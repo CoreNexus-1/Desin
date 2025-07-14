@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESIN CORPORATIONS - Mantenimiento Industrial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    :root {
+      --light-bg: #F5F3EF;
+      --medium-light: #D9D5CC;
+      --dark-text: #2A2118;
+      --accent-dark: #5B4E1F;
+      --gold-light: #E6C78D;
+      --gold-medium: #D9A648;
+      --mustard: #B37B2E;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--accent-dark);
+      color: var(--gold-light);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 50px;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover img {
+      transform: rotate(5deg);
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold-medium);
+    }
+
+    /* Menú de navegación */
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--gold-medium);
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Menú hamburguesa para móviles */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+    }
+
+    /* Hero section con efecto parallax */
+    .hero {
+      background: linear-gradient(rgba(91, 78, 31, 0.8), rgba(91, 78, 31, 0.8)), 
+                  url('https://images.unsplash.com/photo-1581093057305-3ec4b6c4e7a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      color: white;
+      padding: 8rem 0 6rem;
+      text-align: center;
+      position: relative;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold-medium);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--mustard);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%, -50%);
+      transform-origin: 50% 50%;
+    }
+
+    .btn:focus:not(:active)::after {
+      animation: ripple 1s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--mustard);
+      color: var(--mustard);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--mustard);
+      color: white;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Secciones */
+    .section {
+      padding: 4rem 0;
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title h3 {
+      font-size: 2rem;
+      color: var(--accent-dark);
+      display: inline-block;
+    }
+
+    .section-title h3::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background-color: var(--mustard);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .medium-bg {
+      background-color: var(--medium-light);
+    }
+
+    .accent-bg {
+      background-color: var(--accent-dark);
+      color: white;
+    }
+
+    /* About section */
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.5s;
+    }
+
+    .about-image:hover {
+      transform: scale(1.02);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      flex: 1;
+    }
+
+    .about-content h3 {
+      font-size: 1.8rem;
+      color: var(--accent-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      color: var(--dark-text);
+    }
+
+    .founders {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .founder-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      flex: 1;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .founder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .founder-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--gold-medium);
+    }
+
+    /* Mission & Vision */
+    .mission-vision {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .mission-card, .vision-card {
+      flex: 1;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+      color: var(--dark-text);
+      transition: transform 0.3s;
+    }
+
+    .mission-card:hover, .vision-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .mission-card::before, .vision-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background-color: var(--mustard);
+    }
+
+    .mission-card h4, .vision-card h4 {
+      color: var(--accent-dark);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+
+    /* Values */
+    .values-list {
+      margin-top: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+
+    .value-item:hover {
+      transform: translateX(5px);
+    }
+
+    .value-icon {
+      font-size: 1.5rem;
+      color: var(--mustard);
+      transition: transform 0.3s;
+    }
+
+    .value-item:hover .value-icon {
+      transform: rotate(15deg);
+    }
+
+    .value-item h4 {
+      color: var(--accent-dark);
+    }
+
+    .value-item p {
+      color: var(--dark-text);
+    }
+
+    /* Services */
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(91, 78, 31, 0.1), rgba(91, 78, 31, 0.3));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .service-image {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .service-card:hover .service-image img {
+      transform: scale(1.1);
+    }
+
+    .service-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-content h4 {
+      color: var(--accent-dark);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-content h4 i {
+      color: var(--mustard);
+    }
+
+    .service-content p, .service-content li {
+      color: var(--dark-text);
+    }
+
+    .service-content ul {
+      list-style-position: inside;
+      margin-top: 1rem;
+      flex: 1;
+    }
+
+    .service-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* Contact section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
+    }
+
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--mustard);
+    }
+
+    .contact-details h4 {
+      margin-bottom: 0.5rem;
+      color: var(--accent-dark);
+    }
+
+    .contact-details p, .contact-details a {
+      color: var(--dark-text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-details a:hover {
+      color: var(--mustard);
+    }
+
+    .schedule {
+      margin-top: 2rem;
+    }
+
+    .schedule-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .map-container {
+      margin-top: 3rem;
+      height: 400px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Formulario */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    form label {
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    form input, form textarea, form select {
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+
+    form input:focus, form textarea:focus, form select:focus {
+      outline: none;
+      border-color: var(--mustard);
+      box-shadow: 0 0 0 3px rgba(179, 123, 46, 0.2);
+    }
+
+    form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    form button {
+      align-self: flex-start;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-text);
+      color: var(--gold-light);
+      padding: 4rem 0 0;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo img {
+      height: 40px;
+    }
+
+    .footer-logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold-medium);
+    }
+
+    .footer-about {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .footer-subscribe {
+      margin-top: 1.5rem;
+    }
+
+    .footer-subscribe p {
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .subscribe-form input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 5px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .subscribe-form button {
+      padding: 0.6rem 1rem;
+      background-color: var(--mustard);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .subscribe-form button:hover {
+      background-color: var(--gold-medium);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(230, 199, 141, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: var(--gold-light);
+      font-size: 1.2rem;
+    }
+
+    .social-link:hover {
+      background-color: var(--mustard);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-links h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      color: var(--gold-medium);
+      padding-bottom: 0.5rem;
+    }
+
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: var(--mustard);
+      bottom: 0;
+      left: 0;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: rgba(230, 199, 141, 0.9);
+      text-decoration: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-links a i {
+      width: 20px;
+      text-align: center;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      background-color: rgba(0,0,0,0.2);
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+
+    .copyright {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    .footer-payments {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .payment-method {
+      width: 40px;
+      height: 25px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* Loading para imágenes */
+    .img-loading {
+      position: relative;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .img-loading::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* Media Queries para responsividad */
+    @media (max-width: 992px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      
+      .about-container {
+        flex-direction: column;
+      }
+      
+      .about-image {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--accent-dark);
+        padding: 1rem 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        z-index: 999;
+      }
+
+      nav.active {
+        transform: translateY(0);
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .hero {
+        padding: 7rem 0 5rem;
+        min-height: auto;
+        background-attachment: scroll;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .mission-vision, .founders {
+        flex-direction: column;
+      }
+
+      .service-card {
+        flex: 1 1 100%;
+      }
+
+      .map-container {
+        height: 300px;
+      }
+
+      .contact-buttons {
+        flex-direction: column;
+      }
+
+      .subscribe-form {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title h3 {
+        font-size: 1.6rem;
+      }
+      
+      .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+      
+      .logo-text, .footer-logo-text {
+        font-size: 1.2rem;
+      }
+      
+      .logo img, .footer-logo img {
+        height: 35px;
+      }
+    }
+
+    /* Clase para ocultar el header */
+    .header-hidden {
+      transform: translateY(-100%);
+    }
+
+    /* Animación de scroll reveal */
+    [data-animate] {
+      opacity: 0;
+      transition: all 0.6s ease;
+    }
+
+    [data-animate="fadeIn"] {
+      transform: translateY(20px);
+    }
+
+    [data-animate="fadeInLeft"] {
+      transform: translateX(-20px);
+    }
+
+    [data-animate="fadeInRight"] {
+      transform: translateX(20px);
+    }
+
+    [data-animate].animate {
+      opacity: 1;
+      transform: translate(0);
+    }
+  </style>
+</head>
+<body>
+  <header id="main-header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="WhatsApp_Image_2025-06-30_at_5.18.24_PM-removebg-preview.png" alt="DESIN CORPORATIONS Logo">
+        <span class="logo-text">DESIN CORPORATIONS</span>
+      </div>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#quienes-somos">Quiénes Somos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="inicio" class="hero">
+    <div class="container hero-content">
+      <h2 class="animate__animated animate__fadeInDown">Honestos y comprometidos con cada uno de nuestros clientes</h2>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">¡Somos tu mejor opción en Multi-Servicios de Mantenimiento, reparaciones en general, paquetería y mensajería!</p>
+      <a href="#contacto" class="btn animate__animated animate__fadeInUp animate__delay-2s">Contáctanos</a>
+    </div>
+  </section>
+
+  <section id="quienes-somos" class="section" data-animate="fadeIn">
+    <div class="container">
+      <div class="section-title">
+        <h3>HOLA, SOMOS DESIN CORPORATIONS</h3>
+      </div>
+      <div class="about-container">
+        <div class="about-image" data-animate="fadeInLeft">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Equipo de trabajo">
+        </div>
+        <div class="about-content" data-animate="fadeInRight">
+          <p>Somos una empresa que a pesar de tener poco tiempo de ser fundada hemos cumplido con las expectativas de nuestros clientes, nuestro trabajo habla por sí mismo ya que contamos con un equipo de trabajo que está altamente capacitado y comprometido con el trabajo así como con los clientes.</p>
+          
+          <div class="founders">
+            <div class="founder-card">
+              <h4>Karina Gonzáles Cruz</h4>
+              <p>Co-Fundadora</p>
+            </div>
+            <div class="founder-card">
+              <h4>Ing. Rogelio Trinidad M.</h4>
+              <p>Co-Fundador</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section accent-bg" data-animate="fadeIn">
+    <div class="container">
+      <div class="section-title">
+        <h3 style="color: var(--gold-medium);">Nuestra Filosofía</h3>
+      </div>
+      <div class="mission-vision">
+        <div class="mission-card" data-animate="fadeInLeft">
+          <h4>MISIÓN</h4>
+          <p>"Garantizar la excelencia operativa en el mantenimiento industrial mediante soluciones personalizadas, transparencia en cada proceso y compromiso con las necesidades específicas de cada cliente, asegurando la continuidad y seguridad de sus operaciones."</p>
+        </div>
+        <div class="vision-card" data-animate="fadeInRight">
+          <h4>VISIÓN</h4>
+          <p>"Consolidarnos como líderes nacionales en de mantenimiento industrial, destacando por el sector nuestra competitividad, ética inquebrantable y capacidad para superar expectativas. Buscamos ser reconocidos como el socio estratégico que transforma desafíos técnicos en soluciones sostenibles y eficientes."</p>
+        </div>
+      </div>
+      
+      <div class="values-list">
+        <h4 style="text-align: center; margin-bottom: 1.5rem; color: var(--gold-medium);">NUESTROS VALORES</h4>
+        <div class="value-item" data-animate="fadeInLeft">
+          <div class="value-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <h4>Responsabilidad</h4>
+            <p>Operamos con rigor técnico y cumplimiento de plazos, asumiendo la entrega de resultados como un compromiso irrenunciable.</p>
+          </div>
+        </div>
+        <div class="value-item" data-animate="fadeInRight">
+          <div class="value-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div>
+            <h4>Integridad</h4>
+            <p>Actuamos con honestidad y honradez en cada interacción, priorizando la transparencia con clientes, colaboradores y proveedores.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="section medium-bg" data-animate="fadeIn">
+    <div class="container">
+      <div class="section-title">
+        <h3>Nuestros Servicios</h3>
+      </div>
+      <div class="services-container">
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="Mantenimiento.png" alt="Mantenimiento Industrial">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-tools"></i> MANTENIMIENTO INDUSTRIAL</h4>
+            <p>Ofrecemos siempre soluciones óptimas en sus equipos e instalaciones:</p>
+            <ul>
+              <li>Mantenimiento correctivo</li>
+              <li>Mantenimiento preventivo</li>
+              <li>Reparación de equipos</li>
+              <li>Trabajos de soldadura</li>
+              <li>Cambio de engranes y baleros</li>
+              <li>Engrasado en general</li>
+              <li>Enbobinado de motores</li>
+              <li>Instalaciones y mantenimiento a bombas hidráulicas</li>
+              <li>Instalación y mantenimiento de compresores</li>
+              <li>Instalación de válvulas y electroválvulas</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="Recicladora.png" alt="Recicladora">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-recycle"></i> RECICLADORA</h4>
+            <p>Servicio que garantiza el cuidado del medio ambiente:</p>
+            <ul>
+              <li>Papel</li>
+              <li>Vidrio</li>
+              <li>Plásticos</li>
+              <li>Materiales electrónicos</li>
+              <li>Pilas y baterías</li>
+              <li>Desechos industriales</li>
+              <li>Acero y aluminio</li>
+              <li>Desperdicios de construcción</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="TRANSPORTE.png" alt="Transporte de carga">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-truck"></i> SERVICIO DE TRANSPORTE DE CARGA</h4>
+            <p>Trabajamos de la mano con nuestros clientes, siempre comprometidos a entregar su carga en tiempo y forma:</p>
+            <ul>
+              <li>Servicio Express</li>
+              <li>Por tamaño y dimensión</li>
+              <li>Carga frágil</li>
+              <li>Materiales de embalaje especializados</li>
+              <li>Unidades: tráiler 53', 48', torton, camionetas 3.5T y 1T</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="MantenimientoEstructural.png" alt="Mantenimiento estructural">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-building"></i> MANTENIMIENTO ESTRUCTURAL</h4>
+            <p>Servicios profesionales para la conservación de estructuras:</p>
+            <ul>
+              <li>Inspección y evaluación del estado estructural general</li>
+              <li>Reemplazo de láminas metálicas o de policarbonato</li>
+              <li>Reparación e impermeabilización de techos</li>
+              <li>Refuerzo de columnas, vigas y trabes dañadas</li>
+              <li>Sustitución de componentes corroídos o deteriorados</li>
+              <li>Corrección de filtraciones y goteras</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="SuministrosIndustriales.png" alt="Suministros industriales">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-boxes"></i> SUMINISTROS INDUSTRIALES</h4>
+            <p>Materiales y equipos para mantenimiento e industria:</p>
+            <ul>
+              <li>Aceites, lubricantes y aditivos especializados</li>
+              <li>Filtros (aceite, aire, combustible e hidráulicos)</li>
+              <li>Baterías automotrices e industriales</li>
+              <li>Grasas, refrigerantes y productos de limpieza</li>
+              <li>Equipamiento básico para talleres y herramientas</li>
+              <li>Material eléctrico, iluminación y cableado</li>
+              <li>Conexiones hidráulicas, sanitarias y neumáticas</li>
+              <li>Elementos de fijación y tornillería</li>
+              <li>Pinturas industriales y recubrimientos</li>
+              <li>Equipo de protección personal (EPP)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="SistemasElectricos.png" alt="Sistemas eléctricos">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-bolt"></i> SISTEMAS ELÉCTRICOS INDUSTRIALES</h4>
+            <p>Soluciones completas para necesidades eléctricas:</p>
+            <ul>
+              <li>Instalación y mantenimiento de redes eléctricas</li>
+              <li>Tableros eléctricos y centros de carga</li>
+              <li>Sistemas de iluminación industrial</li>
+              <li>Protección eléctrica: pararrayos y tierras físicas</li>
+              <li>Diagnóstico y corrección de fallas eléctricas</li>
+              <li>Sistemas de media y baja tensión</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card" data-animate="fadeIn">
+          <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Servicio de Maquila de Personal">
+          </div>
+          <div class="service-content">
+            <h4><i class="fas fa-users"></i> SERVICIO DE MAQUILA DE PERSONAL</h4>
+            <p>Soluciones integrales de personal para sus necesidades operativas:</p>
+            <ul>
+              <li>Personal operativo, técnico y administrativo</li>
+              <li>Cobertura por proyecto, temporal o permanente</li>
+              <li>Reclutamiento, evaluación y selección especializada</li>
+              <li>Supervisión y gestión del recurso humano incluida</li>
+              <li>Capacitación acorde a procesos productivos</li>
+              <li>Disponibilidad para turnos rotativos y jornadas extendidas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section" data-animate="fadeIn">
+    <div class="container">
+      <div class="section-title">
+        <h3>Contacto</h3>
+      </div>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h4>Realiza tu cotización, sin ningún compromiso</h4>
+          <p>Ponte en contacto con nosotros para una atención personalizada.</p>
+          
+          <div class="contact-item" data-animate="fadeInLeft">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Dirección</h4>
+              <p>Colonia La Constitución Totoltepec, Juan Escutia y Francisco Villa, Estado de México. C.P. 50236</p>
+            </div>
+          </div>
+          
+          <div class="contact-item" data-animate="fadeInLeft">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Teléfonos</h4>
+              <p><a href="tel:7228466152">722 846 6152</a></p>
+              <p><a href="tel:7228214063">722 821 4063</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item" data-animate="fadeInLeft">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p><a href="mailto:desincorporations@gmail.com">desincorporations@gmail.com</a></p>
+              <p><a href="mailto:rogetrinidad@gmail.com">rogetrinidad@gmail.com</a></p>
+            </div>
+          </div>
+          
+          <div class="schedule" data-animate="fadeInLeft">
+            <h4>Horario de atención</h4>
+            <div class="schedule-item">
+              <span>Lunes a Viernes</span>
+              <span>8:00 am - 17:00 pm</span>
+            </div>
+            <div class="schedule-item">
+              <span>Sábados y Domingos</span>
+              <span>8:00 am - 13:00 pm</span>
+            </div>
+          </div>
+
+          <div class="contact-buttons" data-animate="fadeInUp">
+            <a href="https://wa.me/527228466152" class="btn" target="_blank">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="tel:7228466152" class="btn btn-outline">
+              <i class="fas fa-phone"></i> Llamar
+            </a>
+            <a href="mailto:desincorporations@gmail.com" class="btn">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+        
+        <form id="contact-form" data-animate="fadeInRight">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Teléfono</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="service">Servicio de interés</label>
+            <select id="service" name="service">
+              <option value="mantenimiento">Mantenimiento Industrial</option>
+              <option value="reciclaje">Servicio de Reciclaje</option>
+              <option value="transporte">Transporte de Carga</option>
+              <option value="estructural">Mantenimiento Estructural</option>
+              <option value="suministros">Suministros Industriales</option>
+              <option value="electrico">Sistemas Eléctricos</option>
+              <option value="maquila">Servicio de Maquila de Personal</option>
+              <option value="otros">Otros</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i> Enviar Mensaje
+          </button>
+        </form>
+      </div>
+
+      <div class="map-container" data-animate="fadeIn">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.258181835942!2d-99.1794669241641!3d19.31329224319283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0006d9f0d26d%3A0x6f6a6a5b7e1d4b07!2sCol.%20La%20Constituci%C3%B3n%20Totoltepec%2C%2050236%20Toluca%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1684875437640!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-logo-container" data-animate="fadeInLeft">
+          <div class="footer-logo">
+            <img src="WhatsApp_Image_2025-06-30_at_5.18.24_PM-removebg-preview.png" alt="DESIN CORPORATIONS Logo">
+            <span class="footer-logo-text">DESIN CORPORATIONS</span>
+          </div>
+          <div class="footer-about">
+            <p>Honestos y comprometidos con cada uno de nuestros clientes. ¡Somos tu mejor opción en servicios industriales!</p>
+          </div>
+          <div class="footer-subscribe">
+            <p>Suscríbete a nuestro boletín</p>
+            <form class="subscribe-form">
+              <input type="email" placeholder="Tu correo electrónico" required>
+              <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-links" data-animate="fadeIn">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Mantenimiento Industrial</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Reciclaje</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Transporte de Carga</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Mantenimiento Estructural</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Suministros Industriales</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Sistemas Eléctricos</a></li>
+            <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Maquila de Personal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links" data-animate="fadeIn">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#quienes-somos"><i class="fas fa-chevron-right"></i> Quiénes Somos</a></li>
+            <li><a href="#quienes-somos"><i class="fas fa-chevron-right"></i> Misión y Visión</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Trabaja con Nosotros</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links" data-animate="fadeInRight">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="tel:7228466152"><i class="fas fa-phone-alt"></i> 722 846 6152</a></li>
+            <li><a href="mailto:desincorporations@gmail.com"><i class="fas fa-envelope"></i> desincorporations@gmail.com</a></li>
+            <li><a href="#contacto"><i class="fas fa-map-marker-alt"></i> Col. La Constitución Totoltepec</a></li>
+            <li><a href="#contacto"><i class="fas fa-clock"></i> Lun-Vie: 8am - 5pm</a></li>
+            <li><a href="#contacto"><i class="fas fa-clock"></i> Sáb-Dom: 8am - 1pm</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="copyright">
+          <p>&copy; 2025  CORENEXUS. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Menú hamburguesa para móviles
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+      menuToggle.innerHTML = mainNav.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    // Ocultar/mostrar header al hacer scroll
+    const header = document.getElementById('main-header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll <= 0) {
+        header.classList.remove('header-hidden');
+        return;
+      }
+      
+      if (currentScroll > lastScroll && !header.classList.contains('header-hidden')) {
+        // Scroll hacia abajo
+        header.classList.add('header-hidden');
+      } else if (currentScroll < lastScroll && header.classList.contains('header-hidden')) {
+        // Scroll hacia arriba
+        header.classList.remove('header-hidden');
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Animación de scroll reveal
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('[data-animate]');
+      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY || window.pageYOffset;
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top + scrollPosition;
+        const elementHeight = element.offsetHeight;
+        
+        if (scrollPosition > elementPosition - windowHeight + elementHeight / 3) {
+          element.classList.add('animate');
+        }
+      });
+    };
+
+    // Observador de intersección para animaciones
+    const observerOptions = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('[data-animate]').forEach(element => {
+      observer.observe(element);
+    });
+
+    // Manejo del formulario de contacto
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Simulación de envío
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+          submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado';
+          setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            this.reset();
+          }, 2000);
+        }, 1500);
+      });
+    }
+
+    // Manejo del formulario de suscripción
+    const subscribeForm = document.querySelector('.subscribe-form');
+    if (subscribeForm) {
+      subscribeForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = this.querySelector('input[type="email"]');
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        
+        setTimeout(() => {
+          submitBtn.innerHTML = '<i class="fas fa-check"></i>';
+          setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            emailInput.value = '';
+          }, 1500);
+        }, 1000);
+      });
+    }
+
+    // Carga inicial de animaciones
+    window.addEventListener('load', () => {
+      animateOnScroll();
+    });
+
+    // Actualizar animaciones al hacer scroll
+    window.addEventListener('scroll', animateOnScroll);
+  </script>
+</body>
+</html>
