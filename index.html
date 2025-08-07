@@ -38,7 +38,6 @@
       padding: 2rem 0;
     }
 
-    /* Animaciones */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -66,11 +65,10 @@
       animation-delay: 0.6s;
     }
 
-    /* Header */
     header {
       background-color: var(--accent-dark);
       color: var(--gold-light);
-      padding: 0.5rem 0; /* Reducir el padding vertical */
+      padding: 0.5rem 0;
       position: fixed;
       top: 0;
       width: 100%;
@@ -92,7 +90,7 @@
     }
 
     .logo img {
-      height: 40px; /* Reducir tamaño del logo */
+      height: 40px;
       transition: transform 0.3s;
     }
 
@@ -101,15 +99,14 @@
     }
 
     .logo-text {
-      font-size: 1.2rem; /* Reducir tamaño del texto */
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--gold-medium);
     }
 
-    /* Menú de navegación */
     nav ul {
       display: flex;
-      gap: 1.5rem; /* Reducir espacio entre elementos del menú */
+      gap: 1.5rem;
       list-style: none;
     }
 
@@ -141,7 +138,6 @@
       width: 100%;
     }
 
-    /* Menú hamburguesa para móviles */
     .menu-toggle {
       display: none;
       cursor: pointer;
@@ -149,10 +145,9 @@
       color: var(--gold-light);
     }
 
-    /* Hero section con efecto parallax */
     .hero {
       background: linear-gradient(rgba(91, 78, 31, 0.8), rgba(91, 78, 31, 0.8)), 
-                  url('https://images.unsplash.com/photo-1581093057305-3ec4b6c4e7a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      url('https://images.unsplash.com/photo-1581093057305-3ec4b6c4e7a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
       color: white;
       padding: 8rem 0 6rem;
       text-align: center;
@@ -183,7 +178,6 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
 
-    /* Botones */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -249,7 +243,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    /* Secciones */
     .section {
       padding: 4rem 0;
       opacity: 0;
@@ -293,7 +286,6 @@
       color: white;
     }
 
-    /* About section */
     .about-container {
       display: flex;
       align-items: center;
@@ -369,7 +361,6 @@
       border: 3px solid var(--gold-medium);
     }
 
-    /* Mission & Vision */
     .mission-vision {
       display: flex;
       gap: 2rem;
@@ -408,7 +399,6 @@
       font-size: 1.3rem;
     }
 
-    /* Values */
     .values-list {
       margin-top: 2rem;
     }
@@ -446,7 +436,6 @@
       color: var(--dark-text);
     }
 
-    /* Services */
     .services-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -538,7 +527,6 @@
       line-height: 1.5;
     }
 
-    /* Contact section */
     .contact-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -614,7 +602,6 @@
       flex-wrap: wrap;
     }
 
-    /* Formulario */
     form {
       display: flex;
       flex-direction: column;
@@ -655,7 +642,6 @@
       align-self: flex-start;
     }
 
-    /* Footer */
     footer {
       background-color: var(--dark-text);
       color: var(--gold-light);
@@ -831,34 +817,350 @@
       font-size: 0.8rem;
     }
 
-    /* Loading para imágenes */
-    .img-loading {
-      position: relative;
-      background-color: #f0f0f0;
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 380px;
+      max-width: calc(100% - 40px);
+      max-height: 600px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
       overflow: hidden;
+      transition: all 0.3s ease;
     }
 
-    .img-loading::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-      animation: loading 1.5s infinite;
+    .chatbot-container.active {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
     }
 
-    @keyframes loading {
-      0% {
-        transform: translateX(-100%);
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: var(--mustard);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(179, 123, 46, 0.4);
+      z-index: 1001;
+      transition: all 0.3s ease;
+    }
+
+    .chatbot-toggle:hover {
+      background-color: var(--gold-medium);
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(179, 123, 46, 0.6);
+    }
+
+    .chatbot-toggle.hidden {
+      transform: translateY(100px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chatbot-toggle i {
+      font-size: 1.5rem;
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, var(--accent-dark), var(--mustard));
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-header i {
+      color: var(--gold-light);
+    }
+
+    .close-chat {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .close-chat:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--mustard) #eee;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: #eee;
+      border-radius: 10px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: var(--mustard);
+      border-radius: 10px;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      position: relative;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    @keyframes slideIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.9);
       }
-      100% {
-        transform: translateX(100%);
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1);
       }
     }
 
-    /* Media Queries para responsividad */
+    .bot-message {
+      background: linear-gradient(135deg, white, #f8f9fa);
+      color: var(--dark-text);
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      border: 1px solid #e9ecef;
+    }
+
+    .user-message {
+      background: linear-gradient(135deg, var(--mustard), var(--gold-medium));
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+
+    .conversation-theme {
+      font-size: 0.7rem;
+      color: var(--mustard);
+      font-weight: 600;
+      padding: 3px 8px;
+      background: rgba(179, 123, 46, 0.1);
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 5px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 6px;
+      align-self: flex-start;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, white, #f8f9fa);
+      border-radius: 18px;
+      border-bottom-left-radius: 5px;
+      width: fit-content;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border: 1px solid #e9ecef;
+    }
+
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--mustard);
+      border-radius: 50%;
+      animation: typing 1.2s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+      0%, 80%, 100% { 
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      40% { 
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    .chat-input-container {
+      display: flex;
+      padding: 15px 20px;
+      background: white;
+      border-top: 1px solid #eee;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 2px solid #e9ecef;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: var(--mustard);
+      box-shadow: 0 0 0 3px rgba(179, 123, 46, 0.2);
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, var(--mustard), var(--gold-medium));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(179, 123, 46, 0.3);
+    }
+
+    .send-btn:hover {
+      background: linear-gradient(135deg, var(--accent-dark), var(--mustard));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(179, 123, 46, 0.4);
+    }
+
+    .info-footer {
+      background: linear-gradient(135deg, var(--accent-dark), #3a3124);
+      color: var(--gold-light);
+      padding: 12px 20px;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-footer a {
+      color: var(--gold-medium);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.3s;
+      padding: 5px;
+      border-radius: 15px;
+    }
+
+    .info-footer a:hover {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .quick-questions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    
+    .quick-question-btn {
+      background: linear-gradient(135deg, rgba(179, 123, 46, 0.1), rgba(217, 166, 72, 0.1));
+      border: 1px solid rgba(179, 123, 46, 0.2);
+      border-radius: 20px;
+      padding: 8px 15px;
+      color: var(--accent-dark);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      max-width: 95%;
+      align-self: flex-start;
+      word-break: break-word;
+    }
+    
+    .quick-question-btn:hover {
+      background: linear-gradient(135deg, rgba(179, 123, 46, 0.2), rgba(217, 166, 72, 0.2));
+      border-color: var(--mustard);
+      transform: translateX(5px);
+      box-shadow: 0 2px 8px rgba(179, 123, 46, 0.2);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: linear-gradient(135deg, rgba(179, 123, 46, 0.1), rgba(217, 166, 72, 0.1));
+      border: 1px solid rgba(179, 123, 46, 0.2);
+      border-radius: 20px;
+      padding: 6px 12px;
+      color: var(--accent-dark);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(135deg, rgba(179, 123, 46, 0.2), rgba(217, 166, 72, 0.2));
+      border-color: var(--mustard);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(179, 123, 46, 0.2);
+    }
+
+    .action-btn i {
+      font-size: 0.8rem;
+    }
+
     @media (max-width: 992px) {
       .hero h2 {
         font-size: 2.2rem;
@@ -885,7 +1187,7 @@
 
       nav {
         position: fixed;
-        top: 60px; /* Ajustar posición del menú móvil */
+        top: 60px;
         left: 0;
         width: 100%;
         background-color: var(--accent-dark);
@@ -935,6 +1237,30 @@
       .subscribe-form {
         flex-direction: column;
       }
+      
+      .chatbot-container {
+        width: calc(100% - 30px);
+        right: 15px;
+        bottom: 15px;
+        max-height: 80vh;
+      }
+      
+      .chatbot-toggle {
+        width: 50px;
+        height: 50px;
+        right: 15px;
+        bottom: 15px;
+      }
+      
+      .message {
+        max-width: 90%;
+      }
+      
+      .info-footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
     }
 
     @media (max-width: 576px) {
@@ -960,12 +1286,10 @@
       }
     }
 
-    /* Clase para ocultar el header */
     .header-hidden {
       transform: translateY(-100%);
     }
 
-    /* Animación de scroll reveal */
     [data-animate] {
       opacity: 0;
       transition: all 0.6s ease;
@@ -1401,13 +1725,387 @@
     <div class="footer-bottom">
       <div class="container">
         <div class="copyright">
-          <p>&copy; 2025  CORENEXUS. Todos los derechos reservados.</p>
+          <p>&copy; 2025 CORENEXUS. Todos los derechos reservados.</p>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Botón flotante del chatbot -->
+  <button class="chatbot-toggle" id="chatbot-toggle-btn">
+    <i class="fas fa-comments"></i>
+  </button>
+
+  <!-- Contenedor del chatbot mejorado -->
+  <div class="chatbot-container" id="chatbot-container">
+    <!-- Encabezado -->
+    <div class="chat-header">
+      <h3><i class="fas fa-robot"></i> Asistente DESIN</h3>
+      <button class="close-chat" id="close-chat"><i class="fas fa-times"></i></button>
+    </div>
+    
+    <!-- Área de mensajes -->
+    <div class="chat-messages" id="chat-messages">
+      <div class="message bot-message">
+        <div class="conversation-theme">Bienvenida</div>
+        ¡Hola! Soy el asistente virtual de DESIN CORPORATIONS. ¿En qué puedo ayudarte hoy?
+      </div>
+    </div>
+    
+    <!-- Entrada de texto -->
+    <div class="chat-input-container">
+      <input type="text" class="chat-input" id="user-input" placeholder="Escribe tu mensaje..." autocomplete="off">
+      <button class="send-btn" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+    
+    <!-- Pie de página con información de contacto -->
+    <div class="info-footer">
+      <a href="tel:7228466152"><i class="fas fa-phone-alt"></i> 722 846 6152</a>
+      <a href="mailto:desincorporations@gmail.com"><i class="fas fa-envelope"></i> desincorporations@gmail.com</a>
+    </div>
+  </div>
+
   <script>
+    // Sistema de conversación mejorado - Clase Chatbot
+    class Chatbot {
+      constructor() {
+        this.isWaitingForResponse = false;
+        this.conversationState = 'initial';
+        this.userName = '';
+        this.userEmail = '';
+        this.userPhone = '';
+        this.currentService = '';
+        
+        // Elementos del DOM
+        this.elements = {
+          container: document.getElementById('chatbot-container'),
+          toggleBtn: document.getElementById('chatbot-toggle-btn'),
+          closeBtn: document.getElementById('close-chat'),
+          messages: document.getElementById('chat-messages'),
+          input: document.getElementById('user-input'),
+          sendBtn: document.getElementById('send-btn')
+        };
+        
+        // Preguntas frecuentes y respuestas
+        this.faq = [
+          {
+            question: /horario|horarios|atencion|abierto|cierra|abren/i,
+            answer: "Nuestro horario de atención es:<br><br>📅 <strong>Lunes a Viernes:</strong> 8:00 am - 17:00 pm<br>📅 <strong>Sábados y Domingos:</strong> 8:00 am - 13:00 pm"
+          },
+          {
+            question: /direccion|ubicacion|ubicados|donde quedan|mapa|como llegar/i,
+            answer: "📍 <strong>Dirección:</strong> Colonia La Constitución Totoltepec, Juan Escutia y Francisco Villa, Estado de México. C.P. 50236<br><br>Puedes ver nuestra ubicación exacta en el mapa en la sección de contacto de nuestra página web."
+          },
+          {
+            question: /contacto|telefono|llamar|whatsapp|correo|email|comunicar|comunicarme/i,
+            answer: "📞 <strong>Teléfono:</strong> 722 846 6152<br>📱 <strong>WhatsApp:</strong> <a href='https://wa.me/527228466152' target='_blank'>722 846 6152</a><br>✉️ <strong>Email:</strong> <a href='mailto:desincorporations@gmail.com'>desincorporations@gmail.com</a>"
+          },
+          {
+            question: /servicios|que ofrecen|que hacen|mantenimiento|reciclaje|transporte|suministros|electrico|maquila/i,
+            answer: "Ofrecemos los siguientes servicios:<br><br>🔧 <strong>Mantenimiento Industrial</strong><br>♻️ <strong>Servicio de Reciclaje</strong><br>🚚 <strong>Transporte de Carga</strong><br>🏗️ <strong>Mantenimiento Estructural</strong><br>📦 <strong>Suministros Industriales</strong><br>⚡ <strong>Sistemas Eléctricos</strong><br>👥 <strong>Maquila de Personal</strong><br><br>Puedes encontrar detalles completos sobre cada servicio en nuestra página web."
+          },
+          {
+            question: /cotizacion|cotización|precio|costo|cuanto cuesta|presupuesto|valor|tarifa/i,
+            answer: "Para proporcionarte una cotización precisa, necesitamos conocer más detalles sobre el servicio que requieres. ¿Podrías indicarnos qué servicio necesitas y algunos detalles adicionales?"
+          },
+          {
+            question: /quienes son|historia|acerca de|sobre la empresa|fundadores|equipo/i,
+            answer: "DESIN CORPORATIONS es una empresa comprometida con la excelencia en servicios industriales. Aunque somos una empresa joven, hemos superado las expectativas de nuestros clientes gracias a nuestro equipo altamente capacitado y comprometido.<br><br>Nuestros fundadores son:<br>- Karina Gonzáles Cruz (Co-Fundadora)<br>- Ing. Rogelio Trinidad M. (Co-Fundador)"
+          },
+          {
+            question: /gracias|agradezco|agradecido|ok|listo|entendido|perfecto|de acuerdo/i,
+            answer: "¡Ha sido un placer ayudarte! 😊 Si tienes más preguntas no dudes en consultarme. Estoy aquí para ayudarte."
+          }
+        ];
+        
+        // Servicios disponibles
+        this.services = [
+          "Mantenimiento Industrial",
+          "Servicio de Reciclaje",
+          "Transporte de Carga",
+          "Mantenimiento Estructural",
+          "Suministros Industriales",
+          "Sistemas Eléctricos",
+          "Maquila de Personal"
+        ];
+        
+        // Inicializar el chatbot
+        this.init();
+      }
+      
+      // Inicializar el chatbot
+      init() {
+        this.setupEventListeners();
+      }
+      
+      // Configurar event listeners
+      setupEventListeners() {
+        // Botón de toggle del chatbot
+        this.elements.toggleBtn.addEventListener('click', () => {
+          this.openChat();
+        });
+        
+        // Botón de cerrar chat
+        this.elements.closeBtn.addEventListener('click', () => {
+          this.closeChat();
+        });
+        
+        // Enviar mensaje con botón
+        this.elements.sendBtn.addEventListener('click', () => {
+          this.handleUserMessage();
+        });
+        
+        // Enviar mensaje con Enter
+        this.elements.input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter' && !this.isWaitingForResponse) {
+            this.handleUserMessage();
+          }
+        });
+      }
+      
+      // Abrir el chat
+      openChat() {
+        this.elements.container.classList.add('active');
+        this.elements.toggleBtn.classList.add('hidden');
+        this.elements.input.focus();
+        
+        // Mostrar preguntas rápidas si es la primera vez
+        if (this.conversationState === 'initial') {
+          setTimeout(() => {
+            this.showQuickQuestions();
+          }, 500);
+        }
+      }
+      
+      // Cerrar el chat
+      closeChat() {
+        if (this.isWaitingForResponse) return;
+        
+        this.sendMessage("¡Gracias por contactar con DESIN CORPORATIONS! Si tienes más preguntas, no dudes en volver a abrir el chat.");
+        
+        // Ocultar el chat después de un breve retraso
+        setTimeout(() => {
+          this.elements.container.classList.remove('active');
+          this.elements.toggleBtn.classList.remove('hidden');
+          this.conversationState = 'initial';
+        }, 2000);
+      }
+      
+      // Manejar el mensaje del usuario
+      handleUserMessage() {
+        const message = this.elements.input.value.trim();
+        if (message && !this.isWaitingForResponse) {
+          this.sendMessage(message, true);
+          this.elements.input.value = '';
+          
+          this.isWaitingForResponse = true;
+          const typingIndicator = this.showTypingIndicator();
+          
+          setTimeout(() => {
+            this.elements.messages.removeChild(typingIndicator);
+            this.processUserMessage(message);
+            this.isWaitingForResponse = false;
+          }, 1000 + Math.random() * 1000); // Tiempo de respuesta aleatorio entre 1-2 segundos
+        }
+      }
+      
+      // Procesar el mensaje del usuario
+      processUserMessage(message) {
+        // Buscar respuesta en las preguntas frecuentes
+        const answer = this.findAnswer(message);
+        
+        if (answer) {
+          this.sendMessage(answer);
+          
+          // Si es sobre cotización, cambiar el estado
+          if (message.match(/cotizacion|precio|costo|cuanto cuesta|presupuesto/i)) {
+            this.conversationState = 'asking_service';
+            setTimeout(() => {
+              this.showServiceOptions();
+            }, 800);
+          } else {
+            setTimeout(() => {
+              this.showQuickQuestions();
+            }, 800);
+          }
+        } else {
+          // Manejar estados de conversación
+          switch (this.conversationState) {
+            case 'asking_service':
+              this.handleServiceSelection(message);
+              break;
+            case 'asking_name':
+              this.handleNameInput(message);
+              break;
+            case 'asking_email':
+              this.handleEmailInput(message);
+              break;
+            case 'asking_phone':
+              this.handlePhoneInput(message);
+              break;
+            case 'asking_details':
+              this.handleDetailsInput(message);
+              break;
+            default:
+              this.sendMessage("Gracias por tu mensaje. Para una atención más personalizada, te recomiendo contactarnos directamente:<br><br>📞 <strong>Teléfono:</strong> 722 846 6152<br>✉️ <strong>Email:</strong> desincorporations@gmail.com");
+              setTimeout(() => {
+                this.showQuickQuestions();
+              }, 800);
+          }
+        }
+      }
+      
+      // Buscar respuesta en las preguntas frecuentes
+      findAnswer(question) {
+        for (const item of this.faq) {
+          if (item.question.test(question)) {
+            return item.answer;
+          }
+        }
+        return null;
+      }
+      
+      // Mostrar preguntas rápidas
+      showQuickQuestions() {
+        const quickQuestions = [
+          "¿Cuál es su horario de atención?",
+          "¿Dónde están ubicados?",
+          "¿Qué servicios ofrecen?",
+          "¿Cómo puedo solicitar una cotización?"
+        ];
+        
+        const questionsContainer = document.createElement('div');
+        questionsContainer.className = 'quick-questions';
+        
+        quickQuestions.forEach(q => {
+          const questionBtn = document.createElement('button');
+          questionBtn.className = 'quick-question-btn';
+          questionBtn.textContent = q;
+          questionBtn.addEventListener('click', () => {
+            this.elements.input.value = q;
+            this.handleUserMessage();
+          });
+          questionsContainer.appendChild(questionBtn);
+        });
+        
+        this.elements.messages.appendChild(questionsContainer);
+        this.scrollToBottom();
+      }
+      
+      // Mostrar opciones de servicio
+      showServiceOptions() {
+        this.sendMessage("Por favor, selecciona el servicio que necesitas:");
+        
+        const servicesContainer = document.createElement('div');
+        servicesContainer.className = 'quick-questions';
+        
+        this.services.forEach(service => {
+          const serviceBtn = document.createElement('button');
+          serviceBtn.className = 'quick-question-btn';
+          serviceBtn.textContent = service;
+          serviceBtn.addEventListener('click', () => {
+            this.handleServiceSelection(service);
+          });
+          servicesContainer.appendChild(serviceBtn);
+        });
+        
+        this.elements.messages.appendChild(servicesContainer);
+        this.scrollToBottom();
+      }
+      
+      // Manejar selección de servicio
+      handleServiceSelection(service) {
+        this.currentService = service;
+        this.conversationState = 'asking_name';
+        this.sendMessage(`Has seleccionado: <strong>${service}</strong>. Para continuar con la cotización, necesitamos algunos datos:`);
+        setTimeout(() => {
+          this.sendMessage("Por favor, indícanos tu nombre completo:");
+        }, 800);
+      }
+      
+      // Manejar entrada de nombre
+      handleNameInput(name) {
+        this.userName = name;
+        this.conversationState = 'asking_email';
+        this.sendMessage(`Gracias, ${name}. Ahora necesitamos tu correo electrónico para contactarte:`);
+      }
+      
+      // Manejar entrada de email
+      handleEmailInput(email) {
+        if (!this.validateEmail(email)) {
+          this.sendMessage("Por favor, introduce un correo electrónico válido:");
+          return;
+        }
+        
+        this.userEmail = email;
+        this.conversationState = 'asking_phone';
+        this.sendMessage("Ahora, por favor indícanos un número de teléfono donde podamos contactarte:");
+      }
+      
+      // Manejar entrada de teléfono
+      handlePhoneInput(phone) {
+        this.userPhone = phone;
+        this.conversationState = 'asking_details';
+        this.sendMessage("Por último, por favor descríbenos con más detalle lo que necesitas (equipos, materiales, fechas, etc.):");
+      }
+      
+      // Manejar entrada de detalles
+      handleDetailsInput(details) {
+        this.sendMessage(`✅ <strong>Cotización registrada</strong><br><br>
+          <strong>Servicio:</strong> ${this.currentService}<br>
+          <strong>Nombre:</strong> ${this.userName}<br>
+          <strong>Email:</strong> ${this.userEmail}<br>
+          <strong>Teléfono:</strong> ${this.userPhone}<br>
+          <strong>Detalles:</strong> ${details}<br><br>
+          Nuestro equipo se pondrá en contacto contigo en las próximas 24 horas para proporcionarte una cotización detallada.`);
+        
+        this.conversationState = 'initial';
+        setTimeout(() => {
+          this.showQuickQuestions();
+        }, 1000);
+      }
+      
+      // Validar email
+      validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+      
+      // Enviar mensaje al chat
+      sendMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+        
+        if (isUser) {
+          messageDiv.textContent = text;
+        } else {
+          messageDiv.innerHTML = text;
+        }
+        
+        this.elements.messages.appendChild(messageDiv);
+        this.scrollToBottom();
+      }
+      
+      // Mostrar indicador de que el bot está escribiendo
+      showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'typing-indicator';
+        typingDiv.innerHTML = `
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        `;
+        this.elements.messages.appendChild(typingDiv);
+        this.scrollToBottom();
+        return typingDiv;
+      }
+      
+      // Desplazarse al final del chat
+      scrollToBottom() {
+        this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
+      }
+    }
+
     // Menú hamburguesa para móviles
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNav = document.getElementById('main-nav');
@@ -1528,9 +2226,13 @@
       });
     }
 
-    // Carga inicial de animaciones
-    window.addEventListener('load', () => {
+    // Inicializar el chatbot cuando se cargue la página
+    document.addEventListener('DOMContentLoaded', () => {
+      // Inicializar animaciones
       animateOnScroll();
+      
+      // Crear instancia del chatbot
+      new Chatbot();
     });
 
     // Actualizar animaciones al hacer scroll
