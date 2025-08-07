@@ -1731,20 +1731,16 @@
     </div>
   </footer>
 
-  <!-- Botón flotante del chatbot -->
   <button class="chatbot-toggle" id="chatbot-toggle-btn">
     <i class="fas fa-comments"></i>
   </button>
 
-  <!-- Contenedor del chatbot mejorado -->
   <div class="chatbot-container" id="chatbot-container">
-    <!-- Encabezado -->
     <div class="chat-header">
       <h3><i class="fas fa-robot"></i> Asistente DESIN</h3>
       <button class="close-chat" id="close-chat"><i class="fas fa-times"></i></button>
     </div>
     
-    <!-- Área de mensajes -->
     <div class="chat-messages" id="chat-messages">
       <div class="message bot-message">
         <div class="conversation-theme">Bienvenida</div>
@@ -1752,13 +1748,11 @@
       </div>
     </div>
     
-    <!-- Entrada de texto -->
     <div class="chat-input-container">
       <input type="text" class="chat-input" id="user-input" placeholder="Escribe tu mensaje..." autocomplete="off">
       <button class="send-btn" id="send-btn"><i class="fas fa-paper-plane"></i></button>
     </div>
     
-    <!-- Pie de página con información de contacto -->
     <div class="info-footer">
       <a href="tel:7228466152"><i class="fas fa-phone-alt"></i> 722 846 6152</a>
       <a href="mailto:desincorporations@gmail.com"><i class="fas fa-envelope"></i> desincorporations@gmail.com</a>
@@ -1766,7 +1760,6 @@
   </div>
 
   <script>
-    // Sistema de conversación mejorado - Clase Chatbot
     class Chatbot {
       constructor() {
         this.isWaitingForResponse = false;
@@ -1776,7 +1769,6 @@
         this.userPhone = '';
         this.currentService = '';
         
-        // Elementos del DOM
         this.elements = {
           container: document.getElementById('chatbot-container'),
           toggleBtn: document.getElementById('chatbot-toggle-btn'),
@@ -1786,7 +1778,6 @@
           sendBtn: document.getElementById('send-btn')
         };
         
-        // Preguntas frecuentes y respuestas
         this.faq = [
           {
             question: /horario|horarios|atencion|abierto|cierra|abren/i,
@@ -1802,23 +1793,62 @@
           },
           {
             question: /servicios|que ofrecen|que hacen|mantenimiento|reciclaje|transporte|suministros|electrico|maquila/i,
-            answer: "Ofrecemos los siguientes servicios:<br><br>🔧 <strong>Mantenimiento Industrial</strong><br>♻️ <strong>Servicio de Reciclaje</strong><br>🚚 <strong>Transporte de Carga</strong><br>🏗️ <strong>Mantenimiento Estructural</strong><br>📦 <strong>Suministros Industriales</strong><br>⚡ <strong>Sistemas Eléctricos</strong><br>👥 <strong>Maquila de Personal</strong><br><br>Puedes encontrar detalles completos sobre cada servicio en nuestra página web."
+            answer: "Ofrecemos los siguientes servicios:<br><br>🔧 <strong>Mantenimiento Industrial</strong> (correctivo, preventivo, soldadura, engranes, motores)<br>♻️ <strong>Servicio de Reciclaje</strong> (papel, vidrio, plásticos, electrónicos)<br>🚚 <strong>Transporte de Carga</strong> (express, frágil, diferentes unidades)<br>🏗️ <strong>Mantenimiento Estructural</strong> (techos, columnas, impermeabilización)<br>📦 <strong>Suministros Industriales</strong> (lubricantes, herramientas, EPP)<br>⚡ <strong>Sistemas Eléctricos</strong> (tableros, iluminación, media/baja tensión)<br>👥 <strong>Maquila de Personal</strong> (temporal o permanente, técnico/administrativo)"
           },
           {
-            question: /cotizacion|cotización|precio|costo|cuanto cuesta|presupuesto|valor|tarifa/i,
-            answer: "Para proporcionarte una cotización precisa, necesitamos conocer más detalles sobre el servicio que requieres. ¿Podrías indicarnos qué servicio necesitas y algunos detalles adicionales?"
+            question: /cotizacion|cotizar|precio|costo|cuanto cuesta|presupuesto|valor|tarifa/i,
+            answer: "Para darte una cotización exacta, necesitamos saber:<br><br>1. ¿Qué servicio específico necesitas?<br>2. ¿Cuál es el alcance del trabajo?<br>3. ¿Tienes algún requerimiento especial?<br><br>Puedes contactarnos directamente por teléfono, WhatsApp o email para una cotización personalizada."
           },
           {
             question: /quienes son|historia|acerca de|sobre la empresa|fundadores|equipo/i,
-            answer: "DESIN CORPORATIONS es una empresa comprometida con la excelencia en servicios industriales. Aunque somos una empresa joven, hemos superado las expectativas de nuestros clientes gracias a nuestro equipo altamente capacitado y comprometido.<br><br>Nuestros fundadores son:<br>- Karina Gonzáles Cruz (Co-Fundadora)<br>- Ing. Rogelio Trinidad M. (Co-Fundador)"
+            answer: "DESIN CORPORATIONS es una empresa joven pero altamente comprometida con la excelencia en servicios industriales y multi-servicios. Nuestro equipo está altamente capacitado y nuestro trabajo habla por sí mismo.<br><br>Fundadores:<br>- Karina Gonzáles Cruz (Co-Fundadora)<br>- Ing. Rogelio Trinidad M. (Co-Fundador)<br><br>Misión: Garantizar excelencia operativa con transparencia y compromiso.<br>Visión: Líderes nacionales en mantenimiento industrial."
+          },
+          {
+            question: /valores|principios|filosofia|etica|compromiso/i,
+            answer: "Nuestros valores fundamentales son:<br><br>✅ <strong>Responsabilidad:</strong> Cumplimiento riguroso de plazos y resultados<br>✅ <strong>Integridad:</strong> Honestidad y transparencia en todas nuestras acciones<br>✅ <strong>Compromiso:</strong> Con nuestros clientes y su satisfacción<br>✅ <strong>Excelencia:</strong> Calidad en cada servicio que ofrecemos"
+          },
+          {
+            question: /mantenimiento industrial|reparacion equipos|soldadura|motores|bombas|compresores/i,
+            answer: "En mantenimiento industrial ofrecemos:<br><br>• Mantenimiento correctivo y preventivo<br>• Reparación de equipos y trabajos de soldadura<br>• Cambio de engranes y baleros<br>• Enbobinado de motores<br>• Instalación/mantenimiento de bombas hidráulicas y compresores<br>• Instalación de válvulas y electroválvulas"
+          },
+          {
+            question: /reciclaje|recicladora|desechos|materiales|chatarra|metales/i,
+            answer: "Nuestro servicio de reciclaje incluye:<br><br>• Papel, vidrio y plásticos<br>• Materiales electrónicos, pilas y baterías<br>• Desechos industriales<br>• Acero, aluminio y metales<br>• Desperdicios de construcción<br>• Recolección de metales (fierro, acero inoxidable, rebaba)"
+          },
+          {
+            question: /transporte|carga|express|fragil|embalaje|unidades/i,
+            answer: "Servicio de transporte de carga:<br><br>• Servicio Express<br>• Manejo de carga frágil<br>• Materiales de embalaje especializados<br>• Unidades disponibles:<br> - Tráiler 53' y 48'<br> - Tortón<br> - Camionetas 3.5T y 1T"
+          },
+          {
+            question: /estructural|techos|columnas|vigas|filtraciones|goteras/i,
+            answer: "Mantenimiento estructural:<br><br>• Inspección y evaluación estructural<br>• Reemplazo de láminas metálicas/policarbonato<br>• Reparación/impermeabilización de techos<br>• Refuerzo de columnas, vigas y trabes<br>• Sustitución de componentes corroídos<br>• Corrección de filtraciones y goteras"
+          },
+          {
+            question: /suministros|materiales|lubricantes|herramientas|epp/i,
+            answer: "Suministros industriales:<br><br>• Aceites, lubricantes y aditivos<br>• Filtros (aceite, aire, combustible)<br>• Baterías automotrices/industriales<br>• Equipamiento para talleres y herramientas<br>• Material eléctrico e iluminación<br>• Equipo de protección personal (EPP)<br>• Pinturas industriales"
+          },
+          {
+            question: /electrico|tableros|iluminacion|tension|fallas electricas/i,
+            answer: "Sistemas eléctricos industriales:<br><br>• Tableros eléctricos y centros de carga<br>• Sistemas de iluminación industrial<br>• Diagnóstico y corrección de fallas<br>• Sistemas de media y baja tensión<br>• Corte láser y maquinario"
+          },
+          {
+            question: /maquila|personal|reclutamiento|temporal|administrativo|operativo/i,
+            answer: "Servicio de maquila de personal:<br><br>• Personal operativo, técnico y administrativo<br>• Cobertura por proyecto, temporal o permanente<br>• Reclutamiento y selección especializada<br>• Supervisión del recurso humano incluida<br>• Capacitación para procesos productivos<br>• Turnos rotativos y jornadas extendidas"
+          },
+          {
+            question: /garantia|calidad|seguro|proteccion|respald|confianza/i,
+            answer: "Nuestros servicios cuentan con:<br><br>✅ Garantía por escrito en todos nuestros trabajos<br>✅ Personal capacitado y certificado<br>✅ Seguros de responsabilidad civil<br>✅ Equipos y materiales de primera calidad<br>✅ Supervisión constante de los proyectos"
+          },
+          {
+            question: /proyecto|proyectos|ejemplo|caso|experiencia|clientes/i,
+            answer: "Hemos trabajado en diversos proyectos industriales y de mantenimiento:<br><br>• Mantenimiento preventivo para plantas manufactureras<br>• Reestructuración de naves industriales<br>• Sistemas eléctricos completos<br>• Programas de reciclaje empresarial<br><br>Podemos proporcionarte referencias de clientes satisfechos."
           },
           {
             question: /gracias|agradezco|agradecido|ok|listo|entendido|perfecto|de acuerdo/i,
-            answer: "¡Ha sido un placer ayudarte! 😊 Si tienes más preguntas no dudes en consultarme. Estoy aquí para ayudarte."
+            answer: "¡Gracias por contactar a DESIN CORPORATIONS! 😊<br><br>Estamos para servirte. Si tienes más preguntas o necesitas cotizar algún servicio, no dudes en contactarnos directamente.<br><br>¡Somos tu mejor opción en multi-servicios!"
           }
         ];
         
-        // Servicios disponibles
         this.services = [
           "Mantenimiento Industrial",
           "Servicio de Reciclaje",
@@ -1829,33 +1859,26 @@
           "Maquila de Personal"
         ];
         
-        // Inicializar el chatbot
         this.init();
       }
       
-      // Inicializar el chatbot
       init() {
         this.setupEventListeners();
       }
       
-      // Configurar event listeners
       setupEventListeners() {
-        // Botón de toggle del chatbot
         this.elements.toggleBtn.addEventListener('click', () => {
           this.openChat();
         });
         
-        // Botón de cerrar chat
         this.elements.closeBtn.addEventListener('click', () => {
           this.closeChat();
         });
         
-        // Enviar mensaje con botón
         this.elements.sendBtn.addEventListener('click', () => {
           this.handleUserMessage();
         });
         
-        // Enviar mensaje con Enter
         this.elements.input.addEventListener('keypress', (e) => {
           if (e.key === 'Enter' && !this.isWaitingForResponse) {
             this.handleUserMessage();
@@ -1863,13 +1886,11 @@
         });
       }
       
-      // Abrir el chat
       openChat() {
         this.elements.container.classList.add('active');
         this.elements.toggleBtn.classList.add('hidden');
         this.elements.input.focus();
         
-        // Mostrar preguntas rápidas si es la primera vez
         if (this.conversationState === 'initial') {
           setTimeout(() => {
             this.showQuickQuestions();
@@ -1877,13 +1898,11 @@
         }
       }
       
-      // Cerrar el chat
       closeChat() {
         if (this.isWaitingForResponse) return;
         
         this.sendMessage("¡Gracias por contactar con DESIN CORPORATIONS! Si tienes más preguntas, no dudes en volver a abrir el chat.");
         
-        // Ocultar el chat después de un breve retraso
         setTimeout(() => {
           this.elements.container.classList.remove('active');
           this.elements.toggleBtn.classList.remove('hidden');
@@ -1891,7 +1910,6 @@
         }, 2000);
       }
       
-      // Manejar el mensaje del usuario
       handleUserMessage() {
         const message = this.elements.input.value.trim();
         if (message && !this.isWaitingForResponse) {
@@ -1905,19 +1923,16 @@
             this.elements.messages.removeChild(typingIndicator);
             this.processUserMessage(message);
             this.isWaitingForResponse = false;
-          }, 1000 + Math.random() * 1000); // Tiempo de respuesta aleatorio entre 1-2 segundos
+          }, 1000 + Math.random() * 1000);
         }
       }
       
-      // Procesar el mensaje del usuario
       processUserMessage(message) {
-        // Buscar respuesta en las preguntas frecuentes
         const answer = this.findAnswer(message);
         
         if (answer) {
           this.sendMessage(answer);
           
-          // Si es sobre cotización, cambiar el estado
           if (message.match(/cotizacion|precio|costo|cuanto cuesta|presupuesto/i)) {
             this.conversationState = 'asking_service';
             setTimeout(() => {
@@ -1929,7 +1944,6 @@
             }, 800);
           }
         } else {
-          // Manejar estados de conversación
           switch (this.conversationState) {
             case 'asking_service':
               this.handleServiceSelection(message);
@@ -1955,7 +1969,6 @@
         }
       }
       
-      // Buscar respuesta en las preguntas frecuentes
       findAnswer(question) {
         for (const item of this.faq) {
           if (item.question.test(question)) {
@@ -1965,7 +1978,6 @@
         return null;
       }
       
-      // Mostrar preguntas rápidas
       showQuickQuestions() {
         const quickQuestions = [
           "¿Cuál es su horario de atención?",
@@ -1992,7 +2004,6 @@
         this.scrollToBottom();
       }
       
-      // Mostrar opciones de servicio
       showServiceOptions() {
         this.sendMessage("Por favor, selecciona el servicio que necesitas:");
         
@@ -2013,7 +2024,6 @@
         this.scrollToBottom();
       }
       
-      // Manejar selección de servicio
       handleServiceSelection(service) {
         this.currentService = service;
         this.conversationState = 'asking_name';
@@ -2023,14 +2033,12 @@
         }, 800);
       }
       
-      // Manejar entrada de nombre
       handleNameInput(name) {
         this.userName = name;
         this.conversationState = 'asking_email';
         this.sendMessage(`Gracias, ${name}. Ahora necesitamos tu correo electrónico para contactarte:`);
       }
       
-      // Manejar entrada de email
       handleEmailInput(email) {
         if (!this.validateEmail(email)) {
           this.sendMessage("Por favor, introduce un correo electrónico válido:");
@@ -2042,14 +2050,12 @@
         this.sendMessage("Ahora, por favor indícanos un número de teléfono donde podamos contactarte:");
       }
       
-      // Manejar entrada de teléfono
       handlePhoneInput(phone) {
         this.userPhone = phone;
         this.conversationState = 'asking_details';
         this.sendMessage("Por último, por favor descríbenos con más detalle lo que necesitas (equipos, materiales, fechas, etc.):");
       }
       
-      // Manejar entrada de detalles
       handleDetailsInput(details) {
         this.sendMessage(`✅ <strong>Cotización registrada</strong><br><br>
           <strong>Servicio:</strong> ${this.currentService}<br>
@@ -2065,13 +2071,11 @@
         }, 1000);
       }
       
-      // Validar email
       validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
       }
       
-      // Enviar mensaje al chat
       sendMessage(text, isUser = false) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -2086,7 +2090,6 @@
         this.scrollToBottom();
       }
       
-      // Mostrar indicador de que el bot está escribiendo
       showTypingIndicator() {
         const typingDiv = document.createElement('div');
         typingDiv.className = 'typing-indicator';
@@ -2100,13 +2103,11 @@
         return typingDiv;
       }
       
-      // Desplazarse al final del chat
       scrollToBottom() {
         this.elements.messages.scrollTop = this.elements.messages.scrollHeight;
       }
     }
 
-    // Menú hamburguesa para móviles
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNav = document.getElementById('main-nav');
     
@@ -2116,7 +2117,6 @@
         '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
     });
 
-    // Cerrar menú al hacer clic en un enlace
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
         mainNav.classList.remove('active');
@@ -2124,7 +2124,6 @@
       });
     });
 
-    // Ocultar/mostrar header al hacer scroll
     const header = document.getElementById('main-header');
     let lastScroll = 0;
 
@@ -2137,17 +2136,14 @@
       }
       
       if (currentScroll > lastScroll && !header.classList.contains('header-hidden')) {
-        // Scroll hacia abajo
         header.classList.add('header-hidden');
       } else if (currentScroll < lastScroll && header.classList.contains('header-hidden')) {
-        // Scroll hacia arriba
         header.classList.remove('header-hidden');
       }
       
       lastScroll = currentScroll;
     });
 
-    // Animación de scroll reveal
     const animateOnScroll = () => {
       const elements = document.querySelectorAll('[data-animate]');
       const windowHeight = window.innerHeight;
@@ -2163,7 +2159,6 @@
       });
     };
 
-    // Observador de intersección para animaciones
     const observerOptions = {
       threshold: 0.1
     };
@@ -2181,13 +2176,11 @@
       observer.observe(element);
     });
 
-    // Manejo del formulario de contacto
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Simulación de envío
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         
@@ -2205,7 +2198,6 @@
       });
     }
 
-    // Manejo del formulario de suscripción
     const subscribeForm = document.querySelector('.subscribe-form');
     if (subscribeForm) {
       subscribeForm.addEventListener('submit', function(e) {
@@ -2226,16 +2218,12 @@
       });
     }
 
-    // Inicializar el chatbot cuando se cargue la página
     document.addEventListener('DOMContentLoaded', () => {
-      // Inicializar animaciones
       animateOnScroll();
       
-      // Crear instancia del chatbot
       new Chatbot();
     });
 
-    // Actualizar animaciones al hacer scroll
     window.addEventListener('scroll', animateOnScroll);
   </script>
 </body>
